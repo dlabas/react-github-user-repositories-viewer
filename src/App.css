@@ -33,8 +33,14 @@ ul {
   list-style-type: none;
 }
 
-ul.a {
+a {
+  color: #61dafb;
+  text-decoration: underline;
   list-style-type: circle;
+}
+
+a:hover {
+  color: white;
 }
 
 @keyframes App-logo-spin {

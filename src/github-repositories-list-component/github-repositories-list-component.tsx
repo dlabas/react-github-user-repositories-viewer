@@ -128,7 +128,15 @@ class GitHubRepositoriesListComponent extends React.Component<GitHubRepositories
 
     render() {
         const repositoryListItems = this.props.repositories.map((repository) =>
-            <li key={repository.id}>{repository.name}</li>
+            <li key={repository.id}>
+                <a href={repository.html_url} target="_blank" rel="noreferrer">{repository.name}</a>
+                &nbsp;
+                (
+                    {repository.stargazers_count.toString()} Stars
+                    &nbsp;/&nbsp;
+                    {repository.forks_count.toString()} Forks
+                )
+            </li>
         );
 
         return (
