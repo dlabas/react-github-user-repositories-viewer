@@ -31,13 +31,18 @@ class GitHubUserRepositoriesComponent extends React.Component<{}, GitHubUserRepo
 
     handleUserSubmit(event: any) {
         event.preventDefault();
-        // alert('Ein Name wurde abgeschickt: ' + this.state.user);
-        this.setState({
-            repositories: [],
-            isLoading: true
-        });
 
-        this.loadUserRepositories();
+        if (!this.state.user) {
+            alert('Please provide a user');
+        } else {
+            // alert('Ein Name wurde abgeschickt: ' + this.state.user);
+            this.setState({
+                repositories: [],
+                isLoading: true
+            });
+
+            this.loadUserRepositories();
+        }
     }
 
     loadUserRepositories() {
