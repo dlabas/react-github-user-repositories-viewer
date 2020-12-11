@@ -16,6 +16,7 @@ class GitHubUserRepositoriesComponent extends React.Component<{}, GitHubUserRepo
         super(props);
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handleUserSubmit = this.handleUserSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
         this.state = {
             user: '',
             repositories: [],
@@ -43,6 +44,17 @@ class GitHubUserRepositoriesComponent extends React.Component<{}, GitHubUserRepo
 
             this.loadUserRepositories();
         }
+    }
+
+    handleReset(event: any) {
+        event.preventDefault();
+
+        this.setState({
+            repositories: [],
+            isLoading: false,
+            isLoaded: false,
+            user: ''
+        });
     }
 
     loadUserRepositories() {
@@ -79,7 +91,7 @@ class GitHubUserRepositoriesComponent extends React.Component<{}, GitHubUserRepo
                     <h2>Show public GitHub repositories of an user</h2>
                 </div>
                 <div>
-                    <UserFormComponent user={user} OnUserChange={this.handleUserChange} OnUserSubmit={this.handleUserSubmit} />
+                    <UserFormComponent user={user} OnUserChange={this.handleUserChange} OnUserSubmit={this.handleUserSubmit} OnReset={this.handleReset} />
                 </div>
                 <div>
                     <GitHubRepositoriesListComponent user={user} repositories={repositories} isLoaded={isLoaded} isLoading={isLoading} />

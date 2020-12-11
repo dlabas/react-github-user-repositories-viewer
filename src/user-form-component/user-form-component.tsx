@@ -4,6 +4,7 @@ interface UserFormProps {
     user: string;
     OnUserChange: Function;
     OnUserSubmit: Function;
+    OnReset: Function;
 }
 
 class UserFormComponent extends React.Component<UserFormProps, {}> {
@@ -12,6 +13,7 @@ class UserFormComponent extends React.Component<UserFormProps, {}> {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
     handleChange(event: any) {
@@ -22,6 +24,10 @@ class UserFormComponent extends React.Component<UserFormProps, {}> {
         this.props.OnUserSubmit(event);
     }
 
+    handleReset(event: any) {
+        this.props.OnReset(event);
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -30,6 +36,7 @@ class UserFormComponent extends React.Component<UserFormProps, {}> {
                     <input type="text" value={this.props.user} onChange={this.handleChange} />
                 </label>
                 <input type="submit" value="Change user" />
+                <button onClick={this.handleReset}>Reset</button>
             </form>
         );
     }
